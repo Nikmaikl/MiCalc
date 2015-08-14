@@ -74,11 +74,10 @@ class ViewController: UIViewController {
     
     func performOperation(sign:String, operation: (Double,Double) -> Double) {
         if operandStack.count >= 2 {
-            let operationStr = String(operandStack[operandStack.count-2]) + " \(sign) " + String(operandStack[operandStack.count-1])
+            let operationStr = String(operandStack[operandStack.count-2]) + " \(sign) " + String(operandStack[operandStack.count-1]) + " = " + String(operation(operandStack[operandStack.count-2], operandStack[operandStack.count-1]))
             historyVC?.operations.append(operationStr)
             displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
             enter()
-            
         }
     }
     
