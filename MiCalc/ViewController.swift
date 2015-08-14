@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        historyVC = tabBarController?.viewControllers?.last as? HistoryTableViewController
+        historyVC = tabBarController?.viewControllers?.last?.childViewControllers.first as? HistoryTableViewController
     }
     
     @IBAction func digitPressed(sender: AnyObject) {
@@ -38,10 +38,30 @@ class ViewController: UIViewController {
     }
     
     @IBAction func deleteAllDigits(sender: AnyObject) {
-        display.text = "0"
-        userIsInTheMiddleOfTyping = false
-        operandStack.removeAll()
-        historyVC.operations.removeAll()
+        let digit = sender.currentTitle
+        
+        if digit == "c" {
+            display.text = "0"
+            operandStack.removeAll()
+            historyVC.operations.removeAll()
+            userIsInTheMiddleOfTyping = false
+            
+        } else if digit == "↰" {
+            if display.text?.characters.last == "." {
+                printedDot = false
+            }
+            display.text = (display.text != "" && display.text != "0") ?
+                display.text!.substringToIndex(display.text!.endIndex.predecessor()) : "0"
+            
+            if (display.text == "") {
+                display.text = "0"
+                userIsInTheMiddleOfTyping = false
+            }
+        }
+    }
+    
+    @IBAction func changeSign(sender: AnyObject) {
+        displayValue = -displayValue
     }
     
     var operandStack = Array<Double>()
