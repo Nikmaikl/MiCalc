@@ -46,8 +46,8 @@ class ViewController: UIViewController {
     
     @IBAction func enter() {
         userIsInTheMiddleOfTyping = false
-        printedDot = false
         operandStack.append(displayValue)
+        printedDot = false
         
         print("operandStack = \(operandStack)")
     }
@@ -100,13 +100,15 @@ class ViewController: UIViewController {
     
     @IBAction func displayDot(sender: AnyObject) {
         if !printedDot {
-            display.text! += "."
+            if userIsInTheMiddleOfTyping {
+                display.text! += "."
+            } else {
+                display.text = "."
+                userIsInTheMiddleOfTyping = true
+            }
             printedDot = true
         }
     }
-    
-    func addOperationToHistory(opr:String) {
-        
-    }
+
 }
 
