@@ -40,6 +40,8 @@ class ViewController: UIViewController {
     @IBAction func deleteAllDigits(sender: AnyObject) {
         display.text = "0"
         userIsInTheMiddleOfTyping = false
+        operandStack.removeAll()
+        historyVC.operations.removeAll()
     }
     
     var operandStack = Array<Double>()
