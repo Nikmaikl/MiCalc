@@ -13,6 +13,7 @@
 		CE0B06A61B78C4030095295E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0B06A51B78C4030095295E /* Assets.xcassets */; };
 		CE0B06A91B78C4030095295E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0B06A71B78C4030095295E /* LaunchScreen.storyboard */; };
 		CED566AC1B7A101800D05ECD /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED566AB1B7A101800D05ECD /* HistoryTableViewController.swift */; };
+		CEF233211B7E7B22002C579C /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF233201B7E7B22002C579C /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE0B06A81B78C4030095295E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE0B06AA1B78C4030095295E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED566AB1B7A101800D05ECD /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		CEF233201B7E7B22002C579C /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +59,39 @@
 			isa = PBXGroup;
 			children = (
 				CE0B069E1B78C4030095295E /* AppDelegate.swift */,
-				CE0B06A01B78C4030095295E /* ViewController.swift */,
-				CED566AB1B7A101800D05ECD /* HistoryTableViewController.swift */,
-				CE0B06A21B78C4030095295E /* Main.storyboard */,
+				CEBA014B1B7FB0C700CB7F26 /* Controller */,
+				CEBA01491B7FB07C00CB7F26 /* Model */,
+				CEBA014A1B7FB0A200CB7F26 /* View */,
 				CE0B06A51B78C4030095295E /* Assets.xcassets */,
-				CE0B06A71B78C4030095295E /* LaunchScreen.storyboard */,
 				CE0B06AA1B78C4030095295E /* Info.plist */,
 			);
 			path = MiCalc;
+			sourceTree = "<group>";
+		};
+		CEBA01491B7FB07C00CB7F26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEF233201B7E7B22002C579C /* CalculatorBrain.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CEBA014A1B7FB0A200CB7F26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B06A21B78C4030095295E /* Main.storyboard */,
+				CE0B06A71B78C4030095295E /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		CEBA014B1B7FB0C700CB7F26 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE0B06A01B78C4030095295E /* ViewController.swift */,
+				CED566AB1B7A101800D05ECD /* HistoryTableViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +167,7 @@
 			files = (
 				CE0B06A11B78C4030095295E /* ViewController.swift in Sources */,
 				CE0B069F1B78C4030095295E /* AppDelegate.swift in Sources */,
+				CEF233211B7E7B22002C579C /* CalculatorBrain.swift in Sources */,
 				CED566AC1B7A101800D05ECD /* HistoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     var shouldAddNewElement = true
     
+    var brain = CalculatorBrain()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         historyVC = tabBarController?.viewControllers?.last?.childViewControllers.first as? HistoryTableViewController
@@ -42,7 +44,7 @@ class ViewController: UIViewController {
         
         if digit == "c" {
             display.text = "0"
-            operandStack.removeAll()
+//            operandStack.removeAll()
             historyVC.operations.removeAll()
             userIsInTheMiddleOfTyping = false
             
@@ -64,48 +66,26 @@ class ViewController: UIViewController {
         displayValue = -displayValue
     }
     
-    var operandStack = Array<Double>()
-    
     @IBAction func enter() {
         userIsInTheMiddleOfTyping = false
-        operandStack.append(displayValue)
         printedDot = false
-        
-        print("operandStack = \(operandStack)")
+        if let result = brain.pushOperand(displayValue) {
+            displayValue = result
+        } else {
+            displayValue = 0
+        }
     }
     
     @IBAction func operate(sender: AnyObject) {
-        let operation = sender.currentTitle!!
         if userIsInTheMiddleOfTyping {
             enter()
         }
-        switch operation {
-        case "÷": performOperation("÷") { $0 / $1 }
-        case "×": performOperation("×") { $0 * $1 }
-        case "-": performOperation("-") { $0 - $1 }
-        case "+": performOperation("+") { $0 + $1 }
-        case "√": performOperation { sqrt($0) }
-        case "sin": performOperation { sin($0) }
-        case "cos": performOperation { cos($0) }
-        default:
-            break
-        }
-    }
-    
-    func performOperation(sign:String, operation: (Double,Double) -> Double) {
-        if operandStack.count >= 2 {
-            let operationStr = String(operandStack[operandStack.count-2]) + " \(sign) " + String(operandStack[operandStack.count-1]) + " = " + String(operation(operandStack[operandStack.count-2], operandStack[operandStack.count-1]))
-            historyVC?.operations.append(operationStr)
-            displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
-            enter()
-        }
-    }
-    
-    private func performOperation(operation: Double -> Double) {
-        if operandStack.count >= 1 {
-            display.text = "\(operation(operandStack.removeLast()))"
-            displayValue = operation(operandStack.removeLast())
-            enter()
+        if let operation = sender.currentTitle! {
+            if let result = brain.performOperation(operation) {
+                displayValue = result
+            } else {
+                displayValue = 0
+            }
         }
     }
     
